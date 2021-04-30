@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 541e292eedc5b3547a19e834b36653f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DespawnTimer: 5
+  SpriteRenderer: {fileID: 3169603502098600783}
 --- !u!61 &4018164196893450216
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5339973691280374110}
   - component: {fileID: 8112977339451420780}
   - component: {fileID: -865219616810641043}
-  - component: {fileID: 2377317772306184137}
+  - component: {fileID: 6425570567487872070}
   m_Layer: 7
   m_Name: projectile_lvl_1
   m_TagString: Untagged
@@ -123,7 +123,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0021070254, y: 0.007492949}
   m_Size: {x: 0.15543966, y: 0.08379253}
   m_Direction: 1
---- !u!114 &2377317772306184137
+--- !u!114 &6425570567487872070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,8 +132,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1445560442816034014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9f39c93e62c24499e155e93ee96cfd, type: 3}
+  m_Script: {fileID: 11500000, guid: 01d25603ae599324892bd7169c143a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectileBody: {fileID: 8112977339451420780}
-  speed: 12
+  speed: 6

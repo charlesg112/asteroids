@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4785657606047743008}
   - component: {fileID: 4785657606047743021}
   - component: {fileID: 4785657606047743020}
-  - component: {fileID: 8695343408480717290}
-  - component: {fileID: -6684212067231052948}
+  - component: {fileID: 8418322320812732570}
+  - component: {fileID: 973132166810253161}
   m_Layer: 9
   m_Name: BaseAsteroid
   m_TagString: Untagged
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: -0.05265757, y: 0}
   serializedVersion: 2
   m_Radius: 1.7367102
---- !u!114 &8695343408480717290
+--- !u!114 &8418322320812732570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,14 +133,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4785657606047743009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27ad26fc065d392499b7822002a3fda3, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e6246218cd8d4746ab3acca6aaac369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialVelocity: 4
+  initialVelocity: 3
   rigidBody: {fileID: 4785657606047743021}
   OnDestroyParticleSystem: {fileID: 1046205513684096464, guid: ddd329968678a474d9b43d23fc15de63,
     type: 3}
---- !u!114 &-6684212067231052948
+--- !u!114 &973132166810253161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,10 +149,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4785657606047743009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27b3b42d28cfb4744bb33f7bc5281fb8, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e5d730dd5691f4469108e72846ee9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Spawns:
   - {fileID: 3169603502098600768, guid: 08ab253534d6e414d901008aa46a4c95, type: 3}
   Probabilities: 01000000
-  DropProbability: 0.1
+  DropProbability: 1
