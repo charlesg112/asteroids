@@ -206,11 +206,13 @@ GameObject:
   - component: {fileID: 142381067}
   - component: {fileID: 142381063}
   - component: {fileID: 142381060}
+  - component: {fileID: 142381069}
   - component: {fileID: 142381062}
   - component: {fileID: 142381064}
   - component: {fileID: 142381066}
   - component: {fileID: 142381065}
   - component: {fileID: 142381070}
+  - component: {fileID: 142381071}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -670,6 +672,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca6c16b8e38efa4b82a6e9ba1c440a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &142381069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142381059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b453ccf76f26a7848916ab59f7866277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spawner: {fileID: 142381071}
 --- !u!82 &142381070
 AudioSource:
   m_ObjectHideFlags: 0
@@ -766,6 +781,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &142381071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142381059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 700721843f9a99747bab30fdd1417dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FragBombInstance: {fileID: 2955007937677612082, guid: e0b07c78cc507694a9e64776ac4961f5,
+    type: 3}
 --- !u!1001 &284907891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1582,6 +1611,7 @@ GameObject:
   - component: {fileID: 1095044008}
   - component: {fileID: 1095044007}
   - component: {fileID: 1095044012}
+  - component: {fileID: 1095044013}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -1722,6 +1752,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1095044008}
   bullet: {fileID: 1445560442816034014, guid: 0af06bf9c1e055f468cbc986d0688191, type: 3}
+--- !u!114 &1095044013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095044006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6595b70919d187848aa62d52c3349585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 142381069}
 --- !u!1 &1358065657
 GameObject:
   m_ObjectHideFlags: 0

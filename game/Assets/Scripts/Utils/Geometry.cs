@@ -25,7 +25,12 @@ public static class Geometry
     public static Quaternion GetQuaternionAngleBetweenPoints(Vector2 from, Vector2 to)
     {
         float angle = GetEulerAngleBetweenPoints(from, to);
-        return Quaternion.Euler(0, 0, angle);
+        return GetQuaternionFromEuleurAngle(angle);
+    }
+
+    public static Quaternion GetQuaternionFromEuleurAngle(float euleurAngle)
+    {
+        return Quaternion.Euler(0, 0, euleurAngle);
     }
 
     public static Vector2 ModulateVelocity(Vector2 direction, float velocity)

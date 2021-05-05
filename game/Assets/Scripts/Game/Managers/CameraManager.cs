@@ -8,7 +8,6 @@ public class CameraManager : MonoBehaviour, EventListener
     private bool isShaking = false;
     void EventListener.onEvent(EventType eventType, GameObject source, int arg)
     {
-        Debug.Log("Event received by camera manager");
         switch (eventType) {
             case EventType.AsteroidDestroyed:
                 ShakeCamera();  break;

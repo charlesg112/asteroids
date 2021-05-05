@@ -5,7 +5,7 @@ public abstract class Projectile : MonoBehaviour
     public Rigidbody2D projectileBody;
     public float speed;
 
-    void Start()
+    protected void Start()
     {
         projectileBody.velocity = Geometry.ModulateVelocity(transform.rotation.eulerAngles.z, speed);
     }
