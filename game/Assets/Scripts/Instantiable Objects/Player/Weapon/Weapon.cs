@@ -4,17 +4,10 @@ public class Weapon : MonoBehaviour
 {
     public Rigidbody2D player;
     public Object bullet;
-    
-    Quaternion GetBulletInitialRotation()
-    {
-        Vector2 playerCenter = player.position;
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return Geometry.GetQuaternionAngleBetweenPoints(playerCenter, mousePosition);
-    }
 
     void Fire()
     {
-        Object bulletInstance = Instantiate(bullet, player.position, GetBulletInitialRotation());
+        Object bulletInstance = Instantiate(bullet, player.position, GameInfo.GetAngleBetweenPlayerAndMouse());
         EventBus.Publish(EventType.BulletFired, this.gameObject, 1);
     }
 

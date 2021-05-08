@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public static class Geometry
@@ -20,6 +21,11 @@ public static class Geometry
             angle = 360 - angle;
         }
         return angle;
+    }
+
+    internal static float GetDistanceBetweeenPoints(Vector2 center, Vector2 position)
+    {
+        return Mathf.Abs((center - position).magnitude);
     }
 
     public static Quaternion GetQuaternionAngleBetweenPoints(Vector2 from, Vector2 to)

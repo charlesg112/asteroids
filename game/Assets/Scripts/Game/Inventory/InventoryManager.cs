@@ -14,7 +14,7 @@ public class InventoryManager : MonoBehaviour
     public void UseItem(int index)
     {
         try {
-            Spawner.InstantiateFragBomb(new Vector2(0, 0), 20);
+            Spawner.InstantiateFragBomb(GameInfo.GetPlayerPosition(), GameInfo.GetAngleBetweenPlayerAndMouse());
         }
         catch (Exception e)
         {
