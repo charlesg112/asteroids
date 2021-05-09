@@ -14,7 +14,7 @@ public class ItemDropper : MonoBehaviour
         probabilitiesTotal = GetProbabilitiesTotal();
     }
 
-    private void OnDestroy()
+    public void Drop()
     {
         if (DropProbability > Random.Range(0.0f, 1.0f))
         {

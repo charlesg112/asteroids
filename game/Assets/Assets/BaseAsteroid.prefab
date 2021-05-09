@@ -140,6 +140,7 @@ MonoBehaviour:
   rigidBody: {fileID: 4785657606047743021}
   OnDestroyParticleSystem: {fileID: 1046205513684096464, guid: ddd329968678a474d9b43d23fc15de63,
     type: 3}
+  ItemDropper: {fileID: 973132166810253161}
 --- !u!114 &973132166810253161
 MonoBehaviour:
   m_ObjectHideFlags: 0

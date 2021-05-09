@@ -3,6 +3,9 @@ using UnityEngine;
 public class AsteroidClass0 : Asteroid
 {
 
+    public ItemDropper ItemDropper;
+
+
     protected override void AsteroidCollisionEvent(Collision2D collision)
     {
         Debug.Log("Collided with asteroid");
@@ -15,11 +18,18 @@ public class AsteroidClass0 : Asteroid
 
     protected override void ProjectileCollisionEvent(Collider2D collision)
     {
-        DefaultProjectilleCollisionEventHandler(collision);
+        ItemDropper.Drop();
+        DefaultProjectileCollisionEventHandler(collision);
     }
 
     public void Update()
     {
         GravityManager.ApplyForceOnRigidBody(this.rigidBody);
+    }
+
+    public override void ExplosionEvent()
+    {
+        ItemDropper.Drop();
+        DefaultDestructionEventHandler();
     }
 }

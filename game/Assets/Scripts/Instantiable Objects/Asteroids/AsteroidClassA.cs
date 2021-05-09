@@ -5,6 +5,11 @@ public class AsteroidClassA : Asteroid
     public GameObject children;
     public int SpawnedChildren;
 
+    public override void ExplosionEvent()
+    {
+        Debug.Log("Exploded");
+    }
+
     protected override void AsteroidCollisionEvent(Collision2D collision)
     {
         Debug.Log("Collided with asteroid");
@@ -24,6 +29,6 @@ public class AsteroidClassA : Asteroid
             float resultingAngle = incomingAngle + 90 + (360/SpawnedChildren) * i;
             GameObject child = GameObject.Instantiate(children, transform.position, Quaternion.Euler(new Vector3(0, 0, resultingAngle)));
         }
-        DefaultProjectilleCollisionEventHandler(collision);
+        DefaultProjectileCollisionEventHandler(collision);
     }
 }

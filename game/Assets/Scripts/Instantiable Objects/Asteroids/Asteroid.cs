@@ -49,12 +49,18 @@ public abstract class Asteroid : BorderBound
     protected abstract void PlayerCollisionEvent(Collision2D collision);
     protected abstract void AsteroidCollisionEvent(Collision2D collision);
     protected abstract void ProjectileCollisionEvent(Collider2D collision);
-    protected void DefaultProjectilleCollisionEventHandler(Collider2D collision)
+    public abstract void ExplosionEvent();
+    protected void DefaultProjectileCollisionEventHandler(Collider2D collision)
+    {
+        Projectile projectile = collision.GetComponent(typeof(Projectile)) as Projectile;
+        projectile.NotifyCollidedWithAsteroid(null);
+        DefaultDestructionEventHandler();
+    }
+
+    protected void DefaultDestructionEventHandler()
     {
         GameObject particleSystem = GameObject.Instantiate(OnDestroyParticleSystem, this.transform.position, Quaternion.identity);
         GameObject.Destroy(particleSystem, 1);
-        Projectile projectile = collision.GetComponent(typeof(Projectile)) as Projectile;
-        projectile.NotifyCollidedWithAsteroid(null);
         Destroy(this.gameObject);
     }
 }
