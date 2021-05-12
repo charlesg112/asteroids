@@ -1,14 +1,15 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MaxBulletsInstances : UIComponent
 {
-    public Text BulletsInstancePlaceholder;
+    public TextMeshProUGUI BulletsInstancePlaceholder;
     private int? currentNumberOfBulletInstances;
     public override void Render(GameStateDTO gameState)
     {
         currentNumberOfBulletInstances = gameState.MaximumNumberOfBulletsInstances;
         BulletsInstancePlaceholder.text = currentNumberOfBulletInstances.ToString();
+        Debug.Log($"Rendered with value : {currentNumberOfBulletInstances}");
     }
 
     public override void RenderIfRequired(GameStateDTO gameState)
