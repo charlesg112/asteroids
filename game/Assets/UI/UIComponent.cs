@@ -6,6 +6,11 @@ public abstract class UIComponent : MonoBehaviour
     {
         UIEventManager.Subscribe(this);
     }
-    public abstract void Render(GameStateDTO gameState);
-    public abstract void RenderIfRequired(GameStateDTO gameState);
+    public abstract void Render(GameState gameState);
+    public abstract bool IsUpdateRequired(GameState gameState);
+    public void RenderIfRequired(GameState gameState)
+    {
+        if (IsUpdateRequired(gameState)) Render(gameState);
+    }
+    
 }

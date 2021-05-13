@@ -1,45 +1,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIEventManager : MonoBehaviour, EventListener
+public class UIEventManager : MonoBehaviour, EventListener, UIEventListener
 {
     static List<UIComponent> UIComponents = new List<UIComponent>();
-    private static GameStateDTO gameStateDTO;
+    private static UIReducer Reducer = new UIReducer();
+    private static GameState gameState;
     
     public static void Subscribe(UIComponent component)
     {
         UIComponents.Add(component);
-        LoadGameState();
         RenderAllComponentsIfRequired();
     } 
     void Start()
     {   
         EventBus.SubsrcribeAsUIEventManager(this);
-        LoadGameState();
-        RenderAllComponents();
+        UIEventBus.Subscribe(this);
+        UpdateGameState();
     }
+
     void EventListener.onEvent(EventType eventType, GameObject source, int arg)
     {
-        LoadGameState();
-        RenderAllComponentsIfRequired();
+        UpdateGameState();
     }
-    private static void LoadGameState()
+    void UIEventListener.onUIEvent(UIEventType eventType, UIComponent source)
     {
-        gameStateDTO = new GameStateDTO();
-        gameStateDTO.MaximumNumberOfBulletsInstances = GameInfo.GetMaximumBulletsInstantiated();
+        Reducer.Reduce(eventType);
+    }
+    private void UpdateGameState()
+    {
+        GameState currentGameState = FetchGameState();
+        if (gameState != currentGameState)
+        {
+            gameState = currentGameState;
+            RenderAllComponentsIfRequired();
+        }
+    }
+    private static GameState FetchGameState()
+    {
+        GameState gameState = new GameState();
+        gameState.MaximumNumberOfBulletsInstances = GameInfo.GetMaximumBulletsInstantiated();
+        return gameState;
     }
     private static void RenderAllComponents()
     {
         foreach (UIComponent component in UIComponents)
         {
-            component.Render(gameStateDTO);
+            component.Render(gameState);
         }
     }
     private static void RenderAllComponentsIfRequired()
     {
         foreach (UIComponent component in UIComponents)
         {
-            component.RenderIfRequired(gameStateDTO);
+            component.RenderIfRequired(gameState);
         }
     }
 }
