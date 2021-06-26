@@ -48,6 +48,17 @@ public static class PersistentStateManager
             throw new LevelNotRegisteredException($"{levelId}");
         }
     }
+    public static LevelData GetLevelCompletionData(int levelId)
+    {
+        try
+        {
+            return PersistentState.LevelDataList[levelId];
+        }
+        catch
+        {
+            throw new LevelNotRegisteredException($"{levelId}");
+        }
+    }
     public static void RestoreDefaultPeristentState()
     {
         PersistentState = new PersistentState();

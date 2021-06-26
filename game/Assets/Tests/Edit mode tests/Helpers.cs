@@ -2,7 +2,7 @@
 
 namespace Assets.Tests
 {
-    static class Helpers
+    public static class Helpers
     {
         static public PersistentState GetMockPersistentState()
         {

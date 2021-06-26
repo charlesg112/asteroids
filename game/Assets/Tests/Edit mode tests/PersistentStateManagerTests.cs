@@ -57,19 +57,36 @@ public class PersistentStateManagerTests
         // Act
         PersistentStateManager.SetPersistentState(new PersistentState(levelDataList));
 
-
         // Assert
         var ex = Assert.Throws<LevelNotRegisteredException>(() => PersistentStateManager.SaveLevelCompletionData(levelId, newScore));
         Assert.IsInstanceOf(typeof(LevelNotRegisteredException), ex);
     }
 
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator PersistentStateManagerTestsWithEnumeratorPasses()
+    [Test]
+    public void GivenValidLevelId_WhenGettingLevelData_ThenShouldGetDesiredLevelData()
     {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
+        // Arrange
+        List<LevelData> levelDataList = Helpers.GetMockPersistentState().LevelDataList;
+        PersistentStateManager.SetPersistentState(new PersistentState(levelDataList));
+        LevelData desiredLevelData = levelDataList[0];
+        
+        // Act
+        LevelData actualLevelData = PersistentStateManager.GetLevelCompletionData(desiredLevelData.LevelId);
+
+        // Assert
+        Assert.AreEqual(desiredLevelData, actualLevelData);
+    }
+
+    [Test]
+    public void GivenInvalidLevelId_WhenGettingLevelData_ThenShouldThrowLevelNotRegisteredException()
+    {
+        // Arrange
+        List<LevelData> levelDataList = Helpers.GetMockPersistentState().LevelDataList;
+        PersistentStateManager.SetPersistentState(new PersistentState(levelDataList));
+        int invalidLevelId = 1203123;
+
+        // Assert
+        var ex = Assert.Throws<LevelNotRegisteredException>(() => PersistentStateManager.GetLevelCompletionData(invalidLevelId));
+        Assert.IsInstanceOf(typeof(LevelNotRegisteredException), ex);
     }
 }
