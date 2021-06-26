@@ -1,0 +1,1 @@
+C:\Users\Charles-Antoine\Documents\Autre\Asteroids\asteroids\game\Tests\obj\Debug\Tests.csproj.CoreCompileInputs.cache

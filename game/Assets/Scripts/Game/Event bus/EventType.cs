@@ -4,5 +4,7 @@ public enum EventType
     AsteroidDestroyed,
     BulletDestroyed,
     PickableBulletPickedUp,
-    TriedToUseEmptyItemSlot
+    TriedToUseEmptyItemSlot,
+    NoAsteroidsInstanciated,
+    GameEnded
 }
