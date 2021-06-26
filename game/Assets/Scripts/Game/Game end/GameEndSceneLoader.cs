@@ -7,7 +7,7 @@ public class GameEndSceneLoader
     public static AsyncOperation LoadGameEndScreen(LevelData currenLevelData)
     {
         EndGameSceneParameters = GetEndGameSceneParameters(currenLevelData);
-        return SceneManager.LoadSceneAsync(EndGameSceneParameters.NextLevelData.SceneName);
+        return SceneManager.LoadSceneAsync(GameInfo.SCENE_NAME_OF_DEFAULT_END_SCREEN);
     }
     private static EndGameSceneParameters GetEndGameSceneParameters(LevelData currentLevelData)
     {

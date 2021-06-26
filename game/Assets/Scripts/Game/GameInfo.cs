@@ -15,6 +15,12 @@ public static class GameInfo
     public const string TAG_OF_ASTEROID_CLASS_0 = "AsteroidClass0";
     public const string TAG_OF_ASTEROID_CLASS_1 = "AsteroidClass1";
 
+    // Scene identifiers
+    public const string SCENE_NAME_OF_DEFAULT_END_SCREEN = "scene_default_end_screen";
+
+    // Ui elements names
+    public const string GAMEOBJECT_NAME_OF_END_SCREEN_LEVEL_TITLE = "level_title";
+
     public static List<GravityPoint> gravityPoints;
     public static int GetMaximumBulletsInstantiated()
     {

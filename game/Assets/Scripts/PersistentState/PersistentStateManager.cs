@@ -26,7 +26,6 @@ public static class PersistentStateManager
     public static void SaveState()
     {
         string save = JsonUtility.ToJson(PersistentState);
-        Debug.Log(Directory.GetCurrentDirectory());
         File.WriteAllText(SavePath, save);
     }
     public static void RetrieveState()
@@ -46,6 +45,18 @@ public static class PersistentStateManager
         catch
         {
             throw new LevelNotRegisteredException($"{levelId}");
+        }
+    }
+    public static void SaveLevelCompletionData(LevelData levelData)
+    {
+        RetrieveStateIfNotYetRetrieved();
+        try
+        {
+            PersistentState.LevelDataList[levelData.LevelId] = levelData;
+        }
+        catch
+        {
+            throw new LevelNotRegisteredException($"{levelData.LevelId}");
         }
     }
     public static LevelData GetLevelCompletionData(int levelId)

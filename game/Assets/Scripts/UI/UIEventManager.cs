@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,12 @@ public class UIEventManager : MonoBehaviour, EventListener, UIEventListener
 {
     static List<UIComponent> UIComponents = new List<UIComponent>();
     private static UIReducer Reducer = new UIReducer();
+
+    public static void Unsubscribe(UIComponent component)
+    {
+        UIComponents.Remove(component);
+    }
+
     private static GameState gameState;
     
     public static void Subscribe(UIComponent component)
