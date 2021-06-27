@@ -1,0 +1,22 @@
+{
+    "LevelDataList": [
+        {
+            "LevelId": 0,
+            "LevelName": "level 1",
+            "Completed": true,
+            "Locked": false,
+            "Score": 100,
+            "Stars": 5,
+            "SceneName": "scene_level_1"
+        },
+        {
+            "LevelId": 1,
+            "LevelName": "level 2",
+            "Completed": false,
+            "Locked": false,
+            "Score": 200,
+            "Stars": 5,
+            "SceneName": "scene_level_2"
+        }
+    ]
+}

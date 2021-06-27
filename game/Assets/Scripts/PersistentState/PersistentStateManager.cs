@@ -15,17 +15,19 @@ public static class PersistentStateManager
     public static void SetPersistentState(PersistentState persistentState)
     {
         PersistentState = persistentState;
+        Initialized = true;
     }
 
     private static void RetrieveStateIfNotYetRetrieved()
     {
-        if (!Initialized) RetrieveState();
+        if (!Initialized || PersistentState == null) RetrieveState();
         Initialized = true;
     }
 
     public static void SaveState()
     {
         string save = JsonUtility.ToJson(PersistentState);
+        Debug.Log(Directory.GetCurrentDirectory());
         File.WriteAllText(SavePath, save);
     }
     public static void RetrieveState()
@@ -61,6 +63,7 @@ public static class PersistentStateManager
     }
     public static LevelData GetLevelCompletionData(int levelId)
     {
+        RetrieveStateIfNotYetRetrieved();
         try
         {
             return PersistentState.LevelDataList[levelId];
@@ -73,7 +76,6 @@ public static class PersistentStateManager
     public static void RestoreDefaultPeristentState()
     {
         PersistentState = new PersistentState();
-        SaveState();
     }
 
     public static void SetSavePath(string savePath)

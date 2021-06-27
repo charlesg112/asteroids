@@ -89,4 +89,21 @@ public class PersistentStateManagerTests
         var ex = Assert.Throws<LevelNotRegisteredException>(() => PersistentStateManager.GetLevelCompletionData(invalidLevelId));
         Assert.IsInstanceOf(typeof(LevelNotRegisteredException), ex);
     }
+
+    [Test]
+    public void GivenNonInitializedPersistentStateManager_WhenGettingLevelData_ThenShouldRetrieveStateFromDrive()
+    {
+        // Arrange
+        List<LevelData> levelDataList = Helpers.GetMockPersistentState().LevelDataList;
+        PersistentStateManager.SetPersistentState(new PersistentState(levelDataList));
+        PersistentStateManager.SaveState();
+        PersistentStateManager.SetPersistentState(null);
+        LevelData exceptedLevelData = levelDataList[0];
+
+        // Act
+        LevelData actualLevelData = PersistentStateManager.GetLevelCompletionData(exceptedLevelData.LevelId);
+
+        // Assert
+        Assert.AreEqual(exceptedLevelData, actualLevelData);
+    }
 }

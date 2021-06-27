@@ -20,6 +20,7 @@ public static class GameInfo
 
     // Ui elements names
     public const string GAMEOBJECT_NAME_OF_END_SCREEN_LEVEL_TITLE = "level_title";
+    public const string GAMEOBJECT_NAME_OF_END_SCREEN_NEXT_LEVEL_BUTTON = "next_level_button";
 
     public static List<GravityPoint> gravityPoints;
     public static int GetMaximumBulletsInstantiated()

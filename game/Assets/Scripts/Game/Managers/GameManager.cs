@@ -18,9 +18,7 @@ public class GameManager : Manager
     {
         if (!GameOver)
         {
-            Debug.Log("--------------- GAME OVER --------------------");
-            Debug.Log($"--------------- SCORE : {Score} --------------------");
-            PersistentStateManager.RestoreDefaultPeristentState(); 
+            GameEndHelpers.TransitionToGameEndedScreen(PersistentStateManager.GetLevelCompletionData(CurrentLevelInfoHolder.CurrentLevelId));
         }
         GameOver = true;
     }
