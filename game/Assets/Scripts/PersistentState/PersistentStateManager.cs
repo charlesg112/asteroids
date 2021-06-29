@@ -4,12 +4,15 @@ using UnityEngine;
 
 public static class PersistentStateManager
 {
+    #region Attributes
     private static string SavePath = Directory.GetCurrentDirectory() + "/testsave.txt";
-    private static bool Initialized = false;
     private static PersistentState PersistentState;
+    public static bool Initialized { get; private set; } = false;
+    #endregion
 
     public static PersistentState GetPersistentState()
     {
+        RetrieveStateIfNotYetRetrieved();
         return PersistentState;
     }
     public static void SetPersistentState(PersistentState persistentState)
@@ -34,15 +37,15 @@ public static class PersistentStateManager
     {
         string save = File.ReadAllText(SavePath);
         PersistentState = JsonUtility.FromJson<PersistentState>(save);
+        Initialized = true;
     }
 
     public static void SaveLevelCompletionData(int levelId, int score)
     {
-        RetrieveStateIfNotYetRetrieved();
         try
         {
-            PersistentState.LevelDataList[levelId].Completed = true;
-            PersistentState.LevelDataList[levelId].Score = score;
+            GetPersistentState().LevelDataList[levelId].Completed = true;
+            GetPersistentState().LevelDataList[levelId].Score = score;
         }
         catch
         {
@@ -51,10 +54,9 @@ public static class PersistentStateManager
     }
     public static void SaveLevelCompletionData(LevelData levelData)
     {
-        RetrieveStateIfNotYetRetrieved();
         try
         {
-            PersistentState.LevelDataList[levelData.LevelId] = levelData;
+            GetPersistentState().LevelDataList[levelData.LevelId] = levelData;
         }
         catch
         {
@@ -63,10 +65,9 @@ public static class PersistentStateManager
     }
     public static LevelData GetLevelCompletionData(int levelId)
     {
-        RetrieveStateIfNotYetRetrieved();
         try
         {
-            return PersistentState.LevelDataList[levelId];
+            return GetPersistentState().LevelDataList[levelId];
         }
         catch
         {
@@ -81,5 +82,6 @@ public static class PersistentStateManager
     public static void SetSavePath(string savePath)
     {
         SavePath = savePath;
+        Initialized = false;
     }
 }

@@ -6,5 +6,6 @@ public enum EventType
     PickableBulletPickedUp,
     TriedToUseEmptyItemSlot,
     NoAsteroidsInstanciated,
-    GameEnded
+    GameEnded,
+    PersistentStateLoaded
 }

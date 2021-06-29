@@ -26,6 +26,11 @@ public class PersistentState
 
     public override int GetHashCode()
     {
-        return 235806273 + EqualityComparer<List<LevelData>>.Default.GetHashCode(LevelDataList);
+        int output = 235806273;
+        foreach(LevelData levelData in LevelDataList)
+        {
+            output = 31 * output + levelData.GetHashCode();
+        }
+        return output;
     }
 }

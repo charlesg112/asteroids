@@ -1129,8 +1129,9 @@ GameObject:
   - component: {fileID: 384074999}
   - component: {fileID: 384074998}
   - component: {fileID: 384074997}
+  - component: {fileID: 384075000}
   m_Layer: 5
-  m_Name: Level 1 (1)
+  m_Name: level_1_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1238,6 +1239,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384074995}
   m_CullTransparentMesh: 1
+--- !u!114 &384075000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384074995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ffa7358ffe9964fa528c7d04723969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelId: 0
+  ScorePlaceholder: {fileID: 0}
+  NamePlaceholder: {fileID: 1746615858}
 --- !u!1 &407753021
 GameObject:
   m_ObjectHideFlags: 0
@@ -6703,7 +6719,7 @@ GameObject:
   - component: {fileID: 1746615859}
   - component: {fileID: 1746615858}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: level_text_name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

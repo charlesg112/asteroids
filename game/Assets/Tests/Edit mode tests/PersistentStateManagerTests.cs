@@ -1,10 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Assets.Tests;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
 
 public class PersistentStateManagerTests
 {
@@ -105,5 +102,71 @@ public class PersistentStateManagerTests
 
         // Assert
         Assert.AreEqual(exceptedLevelData, actualLevelData);
+    }
+
+    [Test]
+    public void GivenNonInitializedPersistentStateManager_WhenGettingPersistentState_ThenShouldRetrieveStateFromDrive()
+    {
+        // Arrange
+        PersistentState expectedPersistentState = Helpers.GetMockPersistentState();
+        PersistentStateManager.SetPersistentState(expectedPersistentState);
+        PersistentStateManager.SaveState();
+        PersistentStateManager.SetPersistentState(null);
+
+        // Act
+        PersistentState actualPersistentState = PersistentStateManager.GetPersistentState();
+
+        // Assert
+        Assert.AreEqual(expectedPersistentState, actualPersistentState);
+    }
+
+    [Test]
+    public void GivenValidPersistentState_WhenRestoringDefaultPersistentState_ThenDefaultPersistentStateShouldBeRestored()
+    {
+        // Arrange
+        PersistentState expectedPersistentState = new PersistentState();
+        PersistentStateManager.SetPersistentState(Helpers.GetMockPersistentState());
+        PersistentStateManager.SaveState();
+
+        // Act
+        PersistentStateManager.RestoreDefaultPeristentState();
+
+        // Assert
+        Assert.AreEqual(expectedPersistentState, PersistentStateManager.GetPersistentState());
+    }
+
+    [Test]
+    public void GivenInitializedPersistentStateManager_WhenChaningSavePath_ThenShouldSetInitializedPropertyToFalse()
+    {
+        // Arrange
+        PersistentState expectedPersistentState = Helpers.GetMockPersistentState();
+        PersistentStateManager.SetPersistentState(expectedPersistentState);
+        PersistentStateManager.SaveState();
+
+        // Act
+        PersistentStateManager.SetSavePath("/testsss.txt");
+
+        // Assert
+        Assert.IsFalse(PersistentStateManager.Initialized);
+    }
+
+    [Test]
+    public void GivenNonInitializedPersistentStateManager_WhenRetrievingDataForTheFirstTime_ThenShouldSetInitializedPropertyToTrue()
+    {
+        // Act
+        PersistentStateManager.RetrieveState();
+
+        // Assert
+        Assert.IsTrue(PersistentStateManager.Initialized);
+    }
+
+    [Test]
+    public void GivenNonInitializedPersistentStateManager_WhenSettingPersistentState_ThenShouldSetInitializedPropertyToTrue()
+    {
+        // Act
+        PersistentStateManager.SetPersistentState(Helpers.GetMockPersistentState());
+
+        // Assert
+        Assert.IsTrue(PersistentStateManager.Initialized);
     }
 }
