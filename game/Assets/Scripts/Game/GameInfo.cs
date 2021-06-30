@@ -14,13 +14,17 @@ public static class GameInfo
     // Tags
     public const string TAG_OF_ASTEROID_CLASS_0 = "AsteroidClass0";
     public const string TAG_OF_ASTEROID_CLASS_1 = "AsteroidClass1";
+    public const string TAG_OF_MENU_LEVEL_BUTTON = "MenuLevelButton";
 
     // Scene identifiers
     public const string SCENE_NAME_OF_DEFAULT_END_SCREEN = "scene_default_end_screen";
+    public const string SCENE_NAME_OF_MENU_SCREEN = "scene_menu";
 
     // Ui elements names
     public const string GAMEOBJECT_NAME_OF_END_SCREEN_LEVEL_TITLE = "level_title";
     public const string GAMEOBJECT_NAME_OF_END_SCREEN_NEXT_LEVEL_BUTTON = "next_level_button";
+    public const string GAMEOBJECT_NAME_OF_MENU_SCREEN_LEVEL_BUTTON_SCORE = "level_text_score";
+    public const string GAMEOBJECT_NAME_OF_MENU_SCREEN_LEVEL_BUTTON_NAME = "level_text_name";
 
     public static List<GravityPoint> gravityPoints;
     public static int GetMaximumBulletsInstantiated()

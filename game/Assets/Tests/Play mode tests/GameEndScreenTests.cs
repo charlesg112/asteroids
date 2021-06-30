@@ -8,12 +8,6 @@ using UnityEngine.UI;
 
 public class GameEndScreenTests
 {
-    public IEnumerator WaitForNextSceneToLoad()
-    {
-        yield return new WaitForFixedUpdate();
-        yield return new WaitForFixedUpdate();
-    }
-
     [UnityTest]
     public IEnumerator GivenValidEndScreenParameters_WhenClickingOnNextLevelButton_ThenNextLevelSceneShouldBeOpened()
     {
@@ -28,7 +22,7 @@ public class GameEndScreenTests
         Button nextLevelButton = nextLevelGameObject.GetComponent(typeof(Button)) as Button;
         nextLevelButton.onClick.Invoke();
 
-        yield return WaitForNextSceneToLoad();
+        yield return PlayModeTestsHelpers.WaitForNextSceneToLoad();
 
         // Assert
         Assert.AreEqual(nextSceneLevelData.SceneName, SceneManager.GetActiveScene().name);

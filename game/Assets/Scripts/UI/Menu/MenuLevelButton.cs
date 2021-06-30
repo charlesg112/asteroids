@@ -5,7 +5,7 @@ public class MenuLevelButton : UIComponent
     public int LevelId;
     public TextMeshProUGUI ScorePlaceholder;
     public TextMeshProUGUI NamePlaceholder;
-    private LevelData LevelData;
+    public LevelData LevelData { get; private set; }
 
     public override bool IsUpdateRequired(GameState gameState)
     {

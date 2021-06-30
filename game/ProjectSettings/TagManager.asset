@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AsteroidClass0
   - AsteroidClass1
+  - MenuLevelButton
   layers:
   - Default
   - TransparentFX

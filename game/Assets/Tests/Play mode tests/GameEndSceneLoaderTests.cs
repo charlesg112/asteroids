@@ -8,19 +8,11 @@ using UnityEngine.TestTools;
 
 public class GameEndSceneLoaderTests
 {
-    public PersistentState SetMockPersistentState()
-    {
-        PersistentState persistentState = Assets.Tests.Helpers.GetMockPersistentState();
-        PersistentStateManager.SetSavePath($"{Directory.GetCurrentDirectory()}/tests.txt");
-        PersistentStateManager.SetPersistentState(persistentState);
-        return persistentState;
-    }
-
     [UnityTest]
     public IEnumerator GivenLevelDataWhichIsNotLast_WhenLoadingNextLevel_ShouldChangeSceneToDefaultEndGameScreen()
     {
         // Arrange
-        PersistentState persistentState = SetMockPersistentState();
+        PersistentState persistentState = PlayModeTestsHelpers.SetMockPersistentState();
 
         // Act
         yield return GameEndSceneLoader.LoadGameEndScreen(persistentState.LevelDataList[0]);
@@ -33,7 +25,7 @@ public class GameEndSceneLoaderTests
     public IEnumerator GivenLevelDataWhichIsNotLast_WhenLoadingNextLevel_ShouldDisplayValidLevelName()
     {
         // Arrange
-        PersistentState persistentState = SetMockPersistentState();
+        PersistentState persistentState = PlayModeTestsHelpers.SetMockPersistentState();
         LevelData currentLevel = persistentState.LevelDataList[0];
 
         // Act
@@ -52,7 +44,7 @@ public class GameEndSceneLoaderTests
     public IEnumerator GivenLevelDataWhichIsNotLast_WhenLoadingNextLevel_ShouldDisplayValidNextLevelButton()
     {
         // Arrange
-        PersistentState persistentState = SetMockPersistentState();
+        PersistentState persistentState = PlayModeTestsHelpers.SetMockPersistentState();
         LevelData currentLevel = persistentState.LevelDataList[0];
         LevelData nextLevel = persistentState.LevelDataList[1];
 
