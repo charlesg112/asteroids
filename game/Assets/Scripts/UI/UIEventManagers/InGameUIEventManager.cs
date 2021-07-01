@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class InGameUIEventManager : UIEventManager
 {
     protected override GameState FetchGameState() 
@@ -8,4 +10,5 @@ public class InGameUIEventManager : UIEventManager
     }
 
     public override void onUIEvent(UIEventType eventType, UIComponent source) { }
+    public override void onUIEvent(UIEventType eventType, KeyCode keyCode) { }
 }

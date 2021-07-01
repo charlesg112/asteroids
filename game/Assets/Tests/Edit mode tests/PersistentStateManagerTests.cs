@@ -28,6 +28,21 @@ public class PersistentStateManagerTests
     }
 
     [Test]
+    public void GivenValidPersistentState_WhenSavingAndRetrievingPersistentState_ThenShouldPreserveSameKeyBinds()
+    {
+        // Arrange
+        List<KeyBind> expectedKeyBinds = Helpers.GetMockPersistentState().KeyBinds;
+
+        // Act
+        PersistentStateManager.SetPersistentState(Helpers.GetMockPersistentState());
+        PersistentStateManager.SaveState();
+        PersistentStateManager.RetrieveState();
+
+        // Assert
+        Assert.AreEqual(expectedKeyBinds, PersistentStateManager.GetPersistentState().KeyBinds);
+    }
+
+    [Test]
     public void GivenValidLevelCompletionData_WhenSavingLevelCompletionData_ThenShouldChangeTheLevelCompletionDataWithDesiredID()
     {
         // Arrange
@@ -109,6 +124,7 @@ public class PersistentStateManagerTests
     {
         // Arrange
         PersistentState expectedPersistentState = Helpers.GetMockPersistentState();
+        PersistentStateManager.SetSavePath(Directory.GetCurrentDirectory() + "/testsaveuwu.txt");
         PersistentStateManager.SetPersistentState(expectedPersistentState);
         PersistentStateManager.SaveState();
         PersistentStateManager.SetPersistentState(null);

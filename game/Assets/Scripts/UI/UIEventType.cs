@@ -1,4 +1,6 @@
 public enum UIEventType
 {
-    PauseRequired
+    PauseRequired,
+    KeyBindButtonClicked,
+    KeyDown
 }

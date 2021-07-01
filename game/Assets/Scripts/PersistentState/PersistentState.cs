@@ -5,13 +5,22 @@ using System.Collections.Generic;
 public class PersistentState
 {
     public List<LevelData> LevelDataList;
+    public List<KeyBind> KeyBinds;
     public PersistentState()
     {
         LevelDataList = new List<LevelData>();
+        KeyBinds = new List<KeyBind>();
     }
     public PersistentState(List<LevelData> levelDataList)
     {
         LevelDataList = levelDataList;
+        KeyBinds = new List<KeyBind>();
+    }
+
+    public PersistentState(List<LevelData> levelDataList, List<KeyBind> keyBinds)
+    {
+        LevelDataList = levelDataList;
+        KeyBinds = keyBinds;
     }
 
     public override bool Equals(object obj)
@@ -30,6 +39,10 @@ public class PersistentState
         foreach(LevelData levelData in LevelDataList)
         {
             output = 31 * output + levelData.GetHashCode();
+        }
+        foreach(KeyBind keyBind in KeyBinds)
+        {
+            output = 31 * output + keyBind.GetHashCode();
         }
         return output;
     }

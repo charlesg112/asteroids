@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class UIEventBus
 {
@@ -12,6 +13,13 @@ public class UIEventBus
         foreach (UIEventListener listener in eventListeners)
         {
             listener.onUIEvent(type, source);
+        }
+    }
+    public static void Publish(UIEventType type, KeyCode keycode)
+    {
+        foreach (UIEventListener listener in eventListeners)
+        {
+            listener.onUIEvent(type, keycode);
         }
     }
 }

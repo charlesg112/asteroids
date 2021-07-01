@@ -28,6 +28,7 @@ public abstract class UIEventManager : MonoBehaviour, EventListener, UIEventList
         UpdateGameState();
     }
     public abstract void onUIEvent(UIEventType eventType, UIComponent source);
+    public abstract void onUIEvent(UIEventType eventType, KeyCode keyCode);
     protected void UpdateGameState()
     {
         GameState currentGameState = FetchGameState();

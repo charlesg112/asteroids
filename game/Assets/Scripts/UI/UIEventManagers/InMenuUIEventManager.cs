@@ -8,6 +8,10 @@ public class InMenuUIEventManager : UIEventManager
     {
         throw new System.NotImplementedException();
     }
+    public override void onUIEvent(UIEventType eventType, KeyCode keyCode)
+    {
+        throw new System.NotImplementedException();
+    }
 
     protected override GameState FetchGameState()
     {
