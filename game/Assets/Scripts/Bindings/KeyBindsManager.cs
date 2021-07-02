@@ -4,16 +4,34 @@ using UnityEngine;
 public static class KeyBindsManager
 {
     private static Dictionary<UserAction, KeyCode> KeyBinds;
-    private static bool bindsAreLoaded = false;
+    public static bool BindsAreLoaded { get; private set; } = false;
+    public static KeyCode GetAssociatedKey(UserAction action)
+    {
+        return GetKeyBinds()[action];
+    }
+    public static void SetKeyBinds(Dictionary<UserAction, KeyCode> keyBinds)
+    {
+        KeyBinds = keyBinds;
+        BindsAreLoaded = true;
+    }
+    public static void SetKeyBind(UserAction action, KeyCode keyCode)
+    {
+        // TODO : Valider ue le bind est valide
+        GetKeyBinds()[action] = keyCode;
+    }
+    public static void SetKeyBind(KeyBind keyBind)
+    {
+        SetKeyBind(keyBind.UserAction, keyBind.KeyCode);
+    }
     public static Dictionary<UserAction, KeyCode> GetKeyBinds()
     {
-        if (!bindsAreLoaded) LoadKeyBinds();
+        if (!BindsAreLoaded || KeyBinds == null) LoadKeyBinds();
         return KeyBinds;
     }
-    private static void LoadKeyBinds()
+    public static void LoadKeyBinds()
     {
         KeyBinds = GetKeyBindDictionaryFromList(PersistentStateManager.GetPersistentState().KeyBinds);
-        bindsAreLoaded = true;
+        BindsAreLoaded = true;
     }
     public static Dictionary<UserAction, KeyCode> GetKeyBindDictionaryFromList(List<KeyBind> keyBinds)
     {

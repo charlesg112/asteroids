@@ -17,7 +17,9 @@ public class InKeyBindEventManager : UIEventManager
     }
     public override void onUIEvent(UIEventType eventType, KeyCode keyCode)
     {
+        UnityEngine.Debug.Log($"KEYDOWN : {keyCode}");
         HandleKeyDown(keyCode);
+        UpdateGameState();
     }
 
     private void HandleKeyBindButtonClicked(KeyBinderComponent eventSource)
@@ -30,14 +32,25 @@ public class InKeyBindEventManager : UIEventManager
     {
         if (highlightedAction != null)
         {
-
+            UserAction userAction = GetSelectedComponent().BindedUserAction;
+            KeyBindsManager.SetKeyBind(userAction, keyCode);
         }
+    }
+
+    private KeyBinderComponent GetSelectedComponent()
+    {
+        return UIComponents.Find(c =>
+        {
+            KeyBinderComponent component = c as KeyBinderComponent;
+            return component.GetBindedUserAction() == highlightedAction;
+        }) as KeyBinderComponent;
     }
 
     protected override GameState FetchGameState()
     {
         GameState output = new GameState();
         output.HighlightedUserAction = highlightedAction;
+        output.CurrentKeyBinds = KeyBindsManager.GetKeyBinds();
         return output;
     }
 }

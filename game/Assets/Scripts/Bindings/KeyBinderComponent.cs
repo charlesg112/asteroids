@@ -6,14 +6,15 @@ using UnityEngine.UI;
 public class KeyBinderComponent : UIComponent
 {
     public UserAction BindedUserAction;
-    private KeyCode bindedTo;
     public Image Highlight;
     public TextMeshProUGUI Input;
 
     private bool isHighlighted;
+    private KeyCode bindedTo;
     public override bool IsUpdateRequired(GameState gameState)
     {
-        return isHighlighted != ShouldBeHighlighted(gameState);
+        return isHighlighted != ShouldBeHighlighted(gameState) ||
+            bindedTo != gameState.CurrentKeyBinds[BindedUserAction];
     }
 
     public override void Render(GameState gameState)
@@ -26,6 +27,7 @@ public class KeyBinderComponent : UIComponent
     private void SetDisplayValues(GameState gameState)
     {
         isHighlighted = ShouldBeHighlighted(gameState);
+        bindedTo = gameState.CurrentKeyBinds[BindedUserAction];
     }
 
     private void SetButtonHighlight(GameState gameState)

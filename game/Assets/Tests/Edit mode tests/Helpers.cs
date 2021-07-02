@@ -25,7 +25,7 @@ namespace Assets.Tests
             return output;
         }
 
-        public static Dictionary<UserAction, KeyCode> GetMockKeyBindsDictionnary()
+        public static Dictionary<UserAction, KeyCode> GetMockKeyBindsDictionary()
         {
             Dictionary<UserAction, KeyCode> output = new Dictionary<UserAction, KeyCode>();
             output.Add(UserAction.BasicAttack, KeyCode.Mouse0);
