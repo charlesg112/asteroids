@@ -1,23 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIEventBus
+public class UIEventBus<T> : MonoBehaviour
 {
-    private static List<UIEventListener> eventListeners = new List<UIEventListener>();
-    public static void Subscribe(UIEventListener listener)
+    private List<UIEventListener<T>> eventListeners = new List<UIEventListener<T>>();
+    public void Subscribe(UIEventListener<T> listener)
     {
         eventListeners.Add(listener);
     }
-    public static void Publish(UIEventType type, UIComponent source)
+    public void Publish(UIEventType type, UIComponent<T> source)
     {
-        foreach (UIEventListener listener in eventListeners)
+        foreach (UIEventListener<T> listener in eventListeners)
         {
             listener.onUIEvent(type, source);
         }
     }
-    public static void Publish(UIEventType type, KeyCode keycode)
+    public void Publish(UIEventType type, KeyCode keycode)
     {
-        foreach (UIEventListener listener in eventListeners)
+        foreach (UIEventListener<T> listener in eventListeners)
         {
             listener.onUIEvent(type, keycode);
         }

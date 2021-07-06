@@ -1,6 +1,6 @@
 using TMPro;
 
-public class MaxBulletsInstances : UIComponent
+public class MaxBulletsInstances : UIComponent<GameState>
 {
     public TextMeshProUGUI BulletsInstancePlaceholder;
     private int? currentNumberOfBulletInstances;

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class InKeyBindUIEventManager : UIEventManager
+public class InKeyBindUIEventManager : UIEventManager<KeyBindingsState>
 {
     private UserAction? highlightedAction;
-    public override void onUIEvent(UIEventType eventType, UIComponent source)
+    public override void onUIEvent(UIEventType eventType, UIComponent<KeyBindingsState> source)
     {
         switch (eventType) 
         {
@@ -54,9 +54,9 @@ public class InKeyBindUIEventManager : UIEventManager
         }) as KeyBinderComponent;
     }
 
-    protected override GameState FetchGameState()
+    protected override KeyBindingsState FetchCurrentState()
     {
-        GameState output = new GameState();
+        KeyBindingsState output = new KeyBindingsState();
         output.HighlightedUserAction = highlightedAction;
         output.CurrentKeyBinds = KeyBindsManager.GetKeyBinds();
         return output;

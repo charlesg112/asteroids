@@ -1,17 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class UIEventManager: MonoBehaviour, EventListener, UIEventListener
+public abstract class UIEventManager<T> : MonoBehaviour, EventListener, UIEventListener<T>
 {
-    public List<UIComponent> UIComponents;
-    protected static GameState GameState;
+    public List<UIComponent<T>> UIComponents;
+    public UIEventBus<T> UIEventBus;
+    public EventBus EventBus;
+    protected static T State;
 
-    public void Unsubscribe(UIComponent component)
+    public void Unsubscribe(UIComponent<T> component)
     {
         UIComponents.Remove(component);
     }
     
-    public void Subscribe(UIComponent component)
+    public void Subscribe(UIComponent<T> component)
     {
         UIComponents.Add(component);
         RenderAllComponentsIfRequired();
@@ -27,31 +29,31 @@ public abstract class UIEventManager: MonoBehaviour, EventListener, UIEventListe
     {
         UpdateGameState();
     }
-    public abstract void onUIEvent(UIEventType eventType, UIComponent source);
+    public abstract void onUIEvent(UIEventType eventType, UIComponent<T> source);
     public abstract void onUIEvent(UIEventType eventType, KeyCode keyCode);
     protected void UpdateGameState()
     {
-        GameState currentGameState = FetchGameState();
-        if (GameState != currentGameState)
+        T currentState = FetchCurrentState();
+        if (!State.Equals(currentState))
         {
-            GameState = currentGameState;
+            State = currentState;
             RenderAllComponentsIfRequired();
         }
     }
-    protected abstract GameState FetchGameState();
+    protected abstract T FetchCurrentState();
 
     protected void RenderAllComponents()
     {
-        foreach (UIComponent component in UIComponents)
+        foreach (UIComponent<T> component in UIComponents)
         {
-            component.Render(GameState);
+            component.Render(State);
         }
     }
     protected void RenderAllComponentsIfRequired()
     {
-        foreach (UIComponent component in UIComponents)
+        foreach (UIComponent<T> component in UIComponents)
         {
-            component.RenderIfRequired(GameState);
+            component.RenderIfRequired(State);
         }
     }
 }

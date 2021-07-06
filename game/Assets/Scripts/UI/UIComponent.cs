@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public abstract class UIComponent : MonoBehaviour
+public abstract class UIComponent<T> : MonoBehaviour
 {
-    public abstract void Render(GameState gameState);
-    public abstract bool IsUpdateRequired(GameState gameState);
-    public void RenderIfRequired(GameState gameState)
+    public abstract void Render(T state);
+    public abstract bool IsUpdateRequired(T state);
+    public void RenderIfRequired(T state)
     {
-        if (IsUpdateRequired(gameState)) Render(gameState);
+        if (IsUpdateRequired(state)) Render(state);
     }
     
 }

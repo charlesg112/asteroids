@@ -1,6 +1,6 @@
 using TMPro;
 
-public class MenuLevelButton : UIComponent
+public class MenuLevelButton : UIComponent<GameState>
 {
     public int LevelId;
     public TextMeshProUGUI ScorePlaceholder;

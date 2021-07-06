@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class InGameUIEventManager : UIEventManager
+public class InGameUIEventManager : UIEventManager<GameState>
 {
-    protected override GameState FetchGameState() 
+    protected override GameState FetchCurrentState() 
     {
         GameState gameState = new GameState();
         gameState.MaximumNumberOfBulletsInstances = GameInfo.GetMaximumBulletsInstantiated();
         return gameState;
     }
 
-    public override void onUIEvent(UIEventType eventType, UIComponent source) { }
+    public override void onUIEvent(UIEventType eventType, UIComponent<GameState> source) { }
     public override void onUIEvent(UIEventType eventType, KeyCode keyCode) { }
 }

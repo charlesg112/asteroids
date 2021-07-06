@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class GameEndScreenDataLoader : UIComponent
+public class GameEndScreenDataLoader : UIComponent<GameState>
 {
     public TextMeshProUGUI LevelName;
     public TextMeshProUGUI NextLevelNameButton;
