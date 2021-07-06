@@ -1,8 +1,6 @@
-using System;
 using UnityEngine;
-using System.Diagnostics;
 
-public class InKeyBindEventManager : UIEventManager
+public class InKeyBindUIEventManager : UIEventManager
 {
     private UserAction? highlightedAction;
     public override void onUIEvent(UIEventType eventType, UIComponent source)
@@ -30,10 +28,20 @@ public class InKeyBindEventManager : UIEventManager
     }
     private void HandleKeyDown(KeyCode keyCode)
     {
-        if (highlightedAction != null)
+        if (highlightedAction == null) return;
+        UserAction userAction = GetSelectedComponent().BindedUserAction;
+        try
         {
-            UserAction userAction = GetSelectedComponent().BindedUserAction;
             KeyBindsManager.SetKeyBind(userAction, keyCode);
+        }
+        catch (KeyCodeIsNoneException) { }
+        catch (KeyCodeInvalidException e)
+        {
+            Debug.Log($"KeyCodeInvalidException : {e}");
+        }
+        catch (KeyCodeAlreadyInUseException e)
+        {
+            Debug.Log($"KeyCodeAlreadyInUseException : {e}");
         }
     }
 

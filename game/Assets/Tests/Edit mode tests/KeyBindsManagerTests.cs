@@ -66,6 +66,7 @@ public class KeyBindsManagerTests
             Assert.AreEqual(KeyBindsManager.GetAssociatedKey(keyValuePair.Key), keyValuePair.Value);
         }
     }
+
     [Test]
     public void GivenValidKeyBinds_WhenSettingSingleKeyBind_ThenShouldSetValidKeyBinds()
     {
@@ -80,5 +81,51 @@ public class KeyBindsManagerTests
         // Assert
         KeyBind actualKeyBind = new KeyBind(expectedKeyBind.UserAction, KeyBindsManager.GetKeyBinds()[expectedKeyBind.UserAction]);
         Assert.AreEqual(expectedKeyBind, actualKeyBind);
+    }
+
+    [Test]
+    public void GivenValidKeyBinds_WhenSettingSingleAlreadyUsedKeyBind_ThenShouldThrowKeyCodeAlreadyInUseException()
+    {
+        // Arrange
+        Dictionary<UserAction, KeyCode> defaultKeyBinds = Helpers.GetMockKeyBindsDictionary();
+        KeyBindsManager.SetKeyBinds(defaultKeyBinds);
+        KeyCode keyCodeAlreadyInUse = defaultKeyBinds[UserAction.MoveDown];
+        KeyBind alreadyInUseKeyBind = new KeyBind(UserAction.BasicAttack, keyCodeAlreadyInUse);
+
+        // Act
+        var ex = Assert.Throws<KeyCodeAlreadyInUseException>(() => KeyBindsManager.SetKeyBind(alreadyInUseKeyBind));
+
+        // Assert
+        Assert.IsInstanceOf(typeof(KeyCodeAlreadyInUseException), ex);
+    }
+
+    [Test]
+    public void GivenValidKeyBinds_WhenSettingSingleNoneKeyBind_ThenShouldThrowKeyBindAlreadyInUseException()
+    {
+        // Arrange
+        Dictionary<UserAction, KeyCode> defaultKeyBinds = Helpers.GetMockKeyBindsDictionary();
+        KeyBindsManager.SetKeyBinds(defaultKeyBinds);
+        KeyBind invalidKeyBind = new KeyBind(UserAction.BasicAttack, KeyCode.None);
+
+        // Act
+        var ex = Assert.Throws<KeyCodeIsNoneException>(() => KeyBindsManager.SetKeyBind(invalidKeyBind));
+
+        // Assert
+        Assert.IsInstanceOf(typeof(KeyCodeIsNoneException), ex);
+    }
+
+    [Test]
+    public void GivenValidKeyBinds_WhenSettingSingleInvalidKeyBind_ThenShouldThrowKeyCodeInvalidException()
+    {
+        // Arrange
+        Dictionary<UserAction, KeyCode> defaultKeyBinds = Helpers.GetMockKeyBindsDictionary();
+        KeyBindsManager.SetKeyBinds(defaultKeyBinds);
+        KeyBind invalidKeyBind = new KeyBind(UserAction.BasicAttack, KeyCode.Escape);
+
+        // Act
+        var ex = Assert.Throws<KeyCodeInvalidException>(() => KeyBindsManager.SetKeyBind(invalidKeyBind));
+
+        // Assert
+        Assert.IsInstanceOf(typeof(KeyCodeInvalidException), ex);
     }
 }

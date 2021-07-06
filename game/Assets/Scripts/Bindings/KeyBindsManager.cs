@@ -16,7 +16,9 @@ public static class KeyBindsManager
     }
     public static void SetKeyBind(UserAction action, KeyCode keyCode)
     {
-        // TODO : Valider ue le bind est valide
+        if (IsKeyCodeNone(keyCode)) throw new KeyCodeIsNoneException();
+        if (IsKeyCodeAlreadyUsedByAnotherBind(action, keyCode)) throw new KeyCodeAlreadyInUseException(keyCode);
+        if (IsKeyCodeInvalid(keyCode)) throw new KeyCodeInvalidException(keyCode);
         GetKeyBinds()[action] = keyCode;
     }
     public static void SetKeyBind(KeyBind keyBind)
@@ -60,5 +62,24 @@ public static class KeyBindsManager
         output.Add(UserAction.MoveDown, KeyCode.S);
         output.Add(UserAction.MoveRight, KeyCode.D);
         return output;
+    }
+    public static bool IsKeyCodeNone(KeyCode bind)
+    {
+        return bind == KeyCode.None;
+    }
+    public static bool IsKeyCodeInvalid(KeyCode bind)
+    {
+        switch (bind)
+        {
+            case KeyCode.Return: return true;
+            case KeyCode.Escape: return true;
+            case KeyCode.None: return true;
+            case KeyCode.Ampersand: return true;
+            default: return false;
+        }
+    }
+    public static bool IsKeyCodeAlreadyUsedByAnotherBind(UserAction userAction, KeyCode bind)
+    {
+        return KeyBinds.ContainsValue(bind);
     }
 }

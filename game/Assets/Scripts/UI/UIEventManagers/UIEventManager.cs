@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class UIEventManager : MonoBehaviour, EventListener, UIEventListener
+public abstract class UIEventManager: MonoBehaviour, EventListener, UIEventListener
 {
     public List<UIComponent> UIComponents;
     protected static GameState GameState;
