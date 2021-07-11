@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class UIEventManager<T> : MonoBehaviour, EventListener, UIEventListener<T>
+public abstract class UIEventManager<T> : MonoBehaviour, EventListener, UIEventListener
 {
     public List<UIComponent<T>> UIComponents;
-    public UIEventBus<T> UIEventBus;
-    public EventBus EventBus;
     protected static T State;
 
     public void Unsubscribe(UIComponent<T> component)
@@ -29,12 +27,12 @@ public abstract class UIEventManager<T> : MonoBehaviour, EventListener, UIEventL
     {
         UpdateGameState();
     }
-    public abstract void onUIEvent(UIEventType eventType, UIComponent<T> source);
+    public abstract void onUIEvent(UIEventType eventType, Component source);
     public abstract void onUIEvent(UIEventType eventType, KeyCode keyCode);
     protected void UpdateGameState()
     {
         T currentState = FetchCurrentState();
-        if (!State.Equals(currentState))
+        if (State == null || !State.Equals(currentState))
         {
             State = currentState;
             RenderAllComponentsIfRequired();

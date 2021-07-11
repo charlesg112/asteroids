@@ -3,7 +3,7 @@ using UnityEngine;
 public class InKeyBindUIEventManager : UIEventManager<KeyBindingsState>
 {
     private UserAction? highlightedAction;
-    public override void onUIEvent(UIEventType eventType, UIComponent<KeyBindingsState> source)
+    public override void onUIEvent(UIEventType eventType, Component source)
     {
         switch (eventType) 
         {

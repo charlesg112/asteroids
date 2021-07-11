@@ -9,6 +9,6 @@ public class InGameUIEventManager : UIEventManager<GameState>
         return gameState;
     }
 
-    public override void onUIEvent(UIEventType eventType, UIComponent<GameState> source) { }
+    public override void onUIEvent(UIEventType eventType, Component source) { }
     public override void onUIEvent(UIEventType eventType, KeyCode keyCode) { }
 }

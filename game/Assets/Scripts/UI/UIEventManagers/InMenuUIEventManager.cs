@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InMenuUIEventManager : UIEventManager<GameState>
 {
-    public override void onUIEvent(UIEventType eventType, UIComponent<GameState> source)
+    public override void onUIEvent(UIEventType eventType, Component source)
     {
         throw new System.NotImplementedException();
     }

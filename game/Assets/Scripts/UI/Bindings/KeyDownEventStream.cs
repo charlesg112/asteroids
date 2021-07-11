@@ -7,7 +7,7 @@ public class KeyDownEventStream : MonoBehaviour
         Event e = Event.current;
         if (e.isKey)
         {
-            UIEventBus<KeyBindingsState>.Publish(UIEventType.KeyDown, e.keyCode);
+            UIEventBus.Publish(UIEventType.KeyDown, e.keyCode);
         }   
     }
 }

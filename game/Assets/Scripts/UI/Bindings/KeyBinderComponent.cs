@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,7 +45,7 @@ public class KeyBinderComponent : UIComponent<KeyBindingsState>
 
     public void HandleClick()
     {
-        UIEventBus<KeyBindingsState>.Publish(UIEventType.KeyBindButtonClicked, this);
+        UIEventBus.Publish(UIEventType.KeyBindButtonClicked, this);
     }
 
     public UserAction GetBindedUserAction()

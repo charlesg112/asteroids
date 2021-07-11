@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventBus : MonoBehaviour
+public static class EventBus
 {
-    private List<EventListener> eventListeners = new List<EventListener>();
-    private List<EventListener> uiEventManagers = new List<EventListener>();
-    public void Subscribe(EventListener listener)
+    private static List<EventListener> eventListeners = new List<EventListener>();
+    private static List<EventListener> uiEventManagers = new List<EventListener>();
+    public static void Subscribe(EventListener listener)
     {
         eventListeners.Add(listener);
     }
-    public void SubsrcribeAsUIEventManager(EventListener listener)
+    public static void SubsrcribeAsUIEventManager(EventListener listener)
     {
         uiEventManagers.Add(listener);
     }
-    public void Publish(EventType type, GameObject source, int arg)
+    public static void Publish(EventType type, GameObject source, int arg)
     {
         foreach (EventListener listener in eventListeners)
         {

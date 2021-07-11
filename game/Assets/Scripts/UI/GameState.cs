@@ -1,12 +1,7 @@
-using System.Collections.Generic;
-using UnityEngine;
-
 public class GameState
 {
     public int MaximumNumberOfBulletsInstances;
     public PersistentState PersistentState;
-    public UserAction? HighlightedUserAction;
-    public Dictionary<UserAction, KeyCode> CurrentKeyBinds;
     
     public override bool Equals(object obj)
     {
