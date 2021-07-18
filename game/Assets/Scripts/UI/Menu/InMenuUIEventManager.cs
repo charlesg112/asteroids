@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InMenuUIEventManager : UIEventManager<GameState>
+public class InMenuUIEventManager : UIEventManager<MenuState>
 {
     public override void onUIEvent(UIEventType eventType, Component source)
     {
@@ -11,9 +11,9 @@ public class InMenuUIEventManager : UIEventManager<GameState>
         throw new System.NotImplementedException();
     }
 
-    protected override GameState FetchCurrentState()
+    protected override MenuState FetchCurrentState()
     {
-        GameState output = new GameState();
+        MenuState output = new MenuState();
         output.PersistentState = PersistentStateManager.GetPersistentState();
         return output;
     }

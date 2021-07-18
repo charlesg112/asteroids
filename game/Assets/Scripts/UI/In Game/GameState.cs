@@ -1,7 +1,6 @@
 public class GameState
 {
     public int MaximumNumberOfBulletsInstances;
-    public PersistentState PersistentState;
     
     public override bool Equals(object obj)
     {
