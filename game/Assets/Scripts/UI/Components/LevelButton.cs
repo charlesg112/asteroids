@@ -1,4 +1,4 @@
-public class LevelButton : UIComponent
+public class LevelButton : UIComponent<GameState>
 {
     public override bool IsUpdateRequired(GameState gameState)
     {

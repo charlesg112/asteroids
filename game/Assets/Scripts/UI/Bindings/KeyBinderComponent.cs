@@ -1,9 +1,8 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyBinderComponent : UIComponent
+public class KeyBinderComponent : UIComponent<KeyBindingsState>
 {
     public UserAction BindedUserAction;
     public Image Highlight;
@@ -11,35 +10,35 @@ public class KeyBinderComponent : UIComponent
 
     private bool isHighlighted;
     private KeyCode bindedTo;
-    public override bool IsUpdateRequired(GameState gameState)
+    public override bool IsUpdateRequired(KeyBindingsState gameState)
     {
         return isHighlighted != ShouldBeHighlighted(gameState) ||
             bindedTo != gameState.CurrentKeyBinds[BindedUserAction];
     }
 
-    public override void Render(GameState gameState)
+    public override void Render(KeyBindingsState gameState)
     {
         SetDisplayValues(gameState);
         SetButtonHighlight(gameState);
         SetButtonDisplayedKeyCode(gameState);
     }
 
-    private void SetDisplayValues(GameState gameState)
+    private void SetDisplayValues(KeyBindingsState gameState)
     {
         isHighlighted = ShouldBeHighlighted(gameState);
         bindedTo = gameState.CurrentKeyBinds[BindedUserAction];
     }
 
-    private void SetButtonHighlight(GameState gameState)
+    private void SetButtonHighlight(KeyBindingsState gameState)
     {
         if (ShouldBeHighlighted(gameState)) Highlight.enabled = true;
         else Highlight.enabled = false;
     }
-    private void SetButtonDisplayedKeyCode(GameState gameState)
+    private void SetButtonDisplayedKeyCode(KeyBindingsState gameState)
     {
         Input.text = bindedTo.ToString();
     }
-    private bool ShouldBeHighlighted(GameState gameState)
+    private bool ShouldBeHighlighted(KeyBindingsState gameState)
     {
         return gameState.HighlightedUserAction == BindedUserAction;
     }
