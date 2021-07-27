@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class PickableItem : MonoBehaviour
+public abstract class PickableObject : MonoBehaviour
 {
     public int DespawnTimer;
     public SpriteRenderer SpriteRenderer;
@@ -9,11 +9,11 @@ public abstract class PickableItem : MonoBehaviour
     {
         switch (collision.gameObject.layer)
         {
-         case GameInfo.LAYER_OF_PLAYER:
+            case GameInfo.LAYER_OF_PLAYER:
                 PlayerCollisionEvent(collision); break;
         }
     }
-    
+
     private void Start()
     {
         StartCoroutine(DestroyAfterTimeout());

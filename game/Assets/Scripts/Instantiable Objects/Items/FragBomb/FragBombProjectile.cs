@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FragBomb : ThrowableItem
+public class FragBombProjectile : ThrowableProjectile
 {
     public float ExplosionRadius;
     public float Mass;

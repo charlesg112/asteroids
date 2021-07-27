@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerInventoryController : MonoBehaviour
 {
-    public InventoryManager inventoryManager;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
@@ -15,6 +14,6 @@ public class PlayerInventoryController : MonoBehaviour
 
     private void TryUseSlotOne() {
         Debug.Log("Tried to use slot one");
-        inventoryManager.UseItem(0);
+        InventorySupervisor.UseItem(0);
     }
 }
