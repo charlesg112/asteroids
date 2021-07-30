@@ -155,5 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spawns:
   - {fileID: 2474608435713548586, guid: c7551fdf18a5b2d4099e6b6420b5f62c, type: 3}
-  Probabilities: 01000000
+  - {fileID: 3169603502098600768, guid: 08ab253534d6e414d901008aa46a4c95, type: 3}
+  Probabilities: 3200000032000000
   DropProbability: 1

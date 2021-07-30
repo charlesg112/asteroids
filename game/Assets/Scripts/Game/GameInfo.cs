@@ -26,6 +26,9 @@ public static class GameInfo
     public const string GAMEOBJECT_NAME_OF_MENU_SCREEN_LEVEL_BUTTON_SCORE = "level_text_score";
     public const string GAMEOBJECT_NAME_OF_MENU_SCREEN_LEVEL_BUTTON_NAME = "level_text_name";
 
+    // Inventory
+    public const int INVENTORY_CAPACITY = 10;
+
     public static List<GravityPoint> gravityPoints;
     public static int GetMaximumBulletsInstantiated()
     {

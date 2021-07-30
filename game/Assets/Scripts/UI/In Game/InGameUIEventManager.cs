@@ -6,6 +6,8 @@ public class InGameUIEventManager : UIEventManager<GameState>
     {
         GameState gameState = new GameState();
         gameState.MaximumNumberOfBulletsInstances = GameInfo.GetMaximumBulletsInstantiated();
+        gameState.CurrentInventory = InventorySupervisor.GetCurrentInventory();
+        Debug.Log(gameState.CurrentInventory);
         return gameState;
     }
 
