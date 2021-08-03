@@ -14,6 +14,6 @@ public class PlayerInventoryController : MonoBehaviour
 
     private void TryUseSlotOne() {
         Debug.Log("Tried to use slot one");
-        InventorySupervisor.UseItem(0);
+        InventorySupervisor.GetInstance().UseItem(0);
     }
 }

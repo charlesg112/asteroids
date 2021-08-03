@@ -37,6 +37,25 @@ public class GameStateTests
     }
 
     [Test]
+    public void GivenGameStatesWithDifferentInventoriesWithMultipleItems_WhenComparingBothStates_ShouldReturnNotEqual()
+    {
+        // Arrange
+        int bulletsInstances = 10;
+        GameState gameState1 = new GameState();
+        GameState gameState2 = new GameState();
+        FragBombUsableItem usableItem = new FragBombUsableItem();
+        gameState1.MaximumNumberOfBulletsInstances = gameState2.MaximumNumberOfBulletsInstances = bulletsInstances;
+        gameState1.CurrentInventory = new List<UsableItem>();
+        gameState2.CurrentInventory = new List<UsableItem>();
+        gameState1.CurrentInventory.Add(usableItem);
+        gameState2.CurrentInventory.Add(usableItem);
+        gameState2.CurrentInventory.Add(usableItem);
+
+        // Assert
+        Assert.AreNotEqual(gameState1, gameState2);
+    }
+
+    [Test]
     public void GivenGameStatesWithDifferentMaxBullets_WhenComparingBothStates_ShouldReturnNotEqual()
     {
         // Arrange

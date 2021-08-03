@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class InventorySupervisor
 {
-    private static List<UsableItem> items = new List<UsableItem>();
-    private static int itemsInInventory = 0;
-    private static int inventoryCapacity = GameInfo.INVENTORY_CAPACITY;
+    private static InventorySupervisor instance;
+    private List<UsableItem> items = new List<UsableItem>();
+    private int itemsInInventory = 0;
+    private int inventoryCapacity = GameInfo.INVENTORY_CAPACITY;
 
-    public static void AddItem(UsableItem item)
+    public static InventorySupervisor GetInstance()
+    {
+        if (instance == null) instance = new InventorySupervisor();
+        return instance;
+    }
+
+    public void AddItem(UsableItem item)
     {
         if (itemsInInventory < inventoryCapacity)
         {
             items.Add(item);
             itemsInInventory++;
-            Debug.Log($"COUNT DE L'INVENTAIRE : {items.Count}");
+            Debug.Log(this);
         }
     }
-    public static void UseItem(int index)
+    public void UseItem(int index)
     {
         try {
             UsableItem usableItem = items[index];
@@ -29,8 +36,15 @@ public class InventorySupervisor
             EventBus.Publish(EventType.TriedToUseEmptyItemSlot, null, 0);
         }
     }
-    public static List<UsableItem> GetCurrentInventory()
+    public List<UsableItem> GetCurrentInventory()
     {
         return items;
+    }
+
+    public override string ToString()
+    {
+        string output = $"Inventory Contents (size = {items.Count})";
+        items.ForEach(i => output += $"\n     - {i.ItemType} [InstanceID : {i.GetInstanceID()}]");
+        return output;
     }
 }
