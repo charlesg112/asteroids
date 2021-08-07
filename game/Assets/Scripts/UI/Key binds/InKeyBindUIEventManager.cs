@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InKeyBindUIEventManager : UIEventManager<KeyBindingsState>
+public class InKeyBindUIEventManager : NonselectiveUIEventManager<KeyBindingsState>
 {
     private UserAction? highlightedAction;
     public override void onUIEvent(UIEventType eventType, Component source)

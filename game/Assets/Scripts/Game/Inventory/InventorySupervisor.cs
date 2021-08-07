@@ -42,17 +42,6 @@ public class InventorySupervisor
         return items;
     }
     
-    public List<UsableItem> GetCurrentInventoryCopy()
-    {
-        List<UsableItem> items = GetCurrentInventory();
-        List<UsableItem> output = new List<UsableItem>();
-        items.ForEach(u =>
-        {
-            output.Add(u);
-        });
-        return output;
-    }
-
     public override string ToString()
     {
         string output = $"Inventory Contents (size = {items.Count})";

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InMenuUIEventManager : UIEventManager<MenuState>
+public class InMenuUIEventManager : NonselectiveUIEventManager<MenuState>
 {
     public override void onUIEvent(UIEventType eventType, Component source)
     {

@@ -20,26 +20,22 @@ public abstract class UIEventManager<T> : MonoBehaviour, EventListener, UIEventL
     {   
         EventBus.SubsrcribeAsUIEventManager(this);
         UIEventBus.Subscribe(this);
-        UpdateGameState();
+        FirstRender();
     }
-
-    public void onEvent(EventType eventType, GameObject source, int arg)
-    {
-        UpdateGameState();
-    }
+    public abstract void onEvent(EventType eventType, GameObject source, int arg);
     public abstract void onUIEvent(UIEventType eventType, Component source);
     public abstract void onUIEvent(UIEventType eventType, KeyCode keyCode);
+    public abstract void FirstRender();
+    protected abstract T FetchCurrentState();
     protected void UpdateGameState()
     {
         T currentState = FetchCurrentState();
-        if (State == null || !State.Equals(currentState))
+        if (State == null || !State.Equals(currentState))
         {
             State = currentState;
             RenderAllComponentsIfRequired();
         }
     }
-    protected abstract T FetchCurrentState();
-
     protected void RenderAllComponents()
     {
         foreach (UIComponent<T> component in UIComponents)
