@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryBarComponent : UIComponent<GameState>
 {
-    public List<Image> ImageSlots;
+    public List<InventorySlotProps> InventorySlots;
     private List<UsableItem> displayedInventory = new List<UsableItem>(GameInfo.INVENTORY_CAPACITY);
     public override bool IsUpdateRequired(GameState state)
     {
@@ -14,18 +12,15 @@ public class InventoryBarComponent : UIComponent<GameState>
 
     public override void Render(GameState state)
     {
-        for (int i = 0; i < ImageSlots.Count; ++i)
+        for (int i = 0; i < InventorySlots.Count; ++i)
         {
             try
             {
-                UsableItem currentUsableItem = displayedInventory[i];
-                if (currentUsableItem == null) ImageSlots[i].enabled = false;
-                ImageSlots[i].enabled = true;
-                ImageSlots[i].sprite = SpritesUtils.GetInstance().GetSpriteFromItemType(currentUsableItem.ItemType);
+                InventorySlotUtils.DisplayContents(InventorySlots[i], displayedInventory[i]);
             }
             catch
             {
-                ImageSlots[i].enabled = false;
+                InventorySlotUtils.DisableInventorySlot(InventorySlots[i]);
             }
         }
     }
