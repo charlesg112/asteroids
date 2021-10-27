@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public static class PersistentStateManager
     #region Attributes
     private static string SavePath = Directory.GetCurrentDirectory() + "/testsave.txt";
     private static PersistentState PersistentState;
+    private static PersistentStateRepository PersistentStateRepository = new PersistentStateRepositoryInJSON(SavePath);
     public static bool Initialized { get; private set; } = false;
     #endregion
 
@@ -29,14 +31,11 @@ public static class PersistentStateManager
 
     public static void SaveState()
     {
-        string save = JsonUtility.ToJson(PersistentState);
-        Debug.Log(Directory.GetCurrentDirectory());
-        File.WriteAllText(SavePath, save);
+        PersistentStateRepository.SavePeristentState(PersistentState);
     }
     public static void RetrieveState()
     {
-        string save = File.ReadAllText(SavePath);
-        PersistentState = JsonUtility.FromJson<PersistentState>(save);
+        PersistentState = PersistentStateRepository.RetrievePersistentState();
         Initialized = true;
     }
 
@@ -74,6 +73,13 @@ public static class PersistentStateManager
             throw new LevelNotRegisteredException($"{levelId}");
         }
     }
+
+    internal static void SaveKeyBinds(List<KeyBind> keyBinds)
+    {
+        PersistentState.KeyBinds = keyBinds;
+        SaveState();
+    }
+
     public static void RestoreDefaultPeristentState()
     {
         PersistentState = new PersistentState();

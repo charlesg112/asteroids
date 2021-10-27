@@ -2,5 +2,6 @@ public enum UIEventType
 {
     PauseRequired,
     KeyBindButtonClicked,
-    KeyDown
+    KeyDown,
+    SaveKeyBinds
 }

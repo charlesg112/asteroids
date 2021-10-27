@@ -10,9 +10,13 @@ public class InKeyBindUIEventManager : NonselectiveUIEventManager<KeyBindingsSta
             case UIEventType.KeyBindButtonClicked:
                 HandleKeyBindButtonClicked(source as KeyBinderComponent);
                 break;
+            case UIEventType.SaveKeyBinds:
+                HandleSaveKeyBindsClicked();
+                break;
         }
         UpdateGameState();
     }
+
     public override void onUIEvent(UIEventType eventType, KeyCode keyCode)
     {
         UnityEngine.Debug.Log($"KEYDOWN : {keyCode}");
@@ -43,6 +47,11 @@ public class InKeyBindUIEventManager : NonselectiveUIEventManager<KeyBindingsSta
         {
             Debug.Log($"KeyCodeAlreadyInUseException : {e}");
         }
+    }
+
+    private void HandleSaveKeyBindsClicked()
+    {
+        KeyBindsManager.SaveKeyBinds();
     }
 
     private KeyBinderComponent GetSelectedComponent()

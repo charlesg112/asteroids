@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,6 +54,12 @@ public static class KeyBindsManager
         }
         return output;
     }
+
+    internal static void SaveKeyBinds()
+    {
+        PersistentStateManager.SaveKeyBinds(GetKeyBindListFromDictionary(KeyBinds));
+    }
+
     public static Dictionary<UserAction, KeyCode> GetDefaultKeyBinds()
     {
         Dictionary<UserAction, KeyCode> output = new Dictionary<UserAction, KeyCode>();
